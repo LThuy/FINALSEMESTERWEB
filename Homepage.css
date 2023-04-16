@@ -3,7 +3,7 @@
 }
 
 body {
-    background: linear-gradient(-45deg, #30dddd, #48044e, #2b4ee9, #fa1e68);
+  background: linear-gradient(-45deg, #30dddd, #48044e, #2b4ee9, #fa1e68);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
     
@@ -218,3 +218,108 @@ body {
     border: 1px solid rgb(255, 255, 255);
     border-radius: 0 0 8px 8px ;
   }
+
+  .musicplay .imgMusic {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    top: 20px;
+    left: 50px;
+  }
+
+  .musicplay .imgMusic i:hover,
+  .musicplay .imgMusic img:hover,
+  .musicplay .imgMusic img {
+    filter: blur(1px);
+  }
+
+  .musicplay .imgMusic img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+  }
+  .musicplay .imgMusic i {
+    position: absolute;
+    font-size: 30px;
+    top: 15px;
+    left: 18px;
+    color: #fff;
+    cursor: pointer;
+    opacity: 90%;
+  }
+  
+  .musicplay .song-info {
+    margin-left: 120px;
+    margin-top: -45px;
+    width: 180px;
+    height: 60px;
+    font-family: 'poppins', sans-serif;
+
+  }
+
+  .musicplay .song-info .song-title {
+    color: #ae57ff;
+    font-size: 20px;
+    width: 180px;
+    height: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .musicplay .song-info .song-title h4{
+    font-size: 14px;
+     margin: 0;
+     padding: 0;
+    animation: slide-left 7s linear infinite;
+  }
+
+  @keyframes slide-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .musicplay .song-info .song-author {
+    font-size: 13px;
+    margin-top: 10px;
+    color: #fff;
+  }
+
+  .musicplay .song-container .track {
+    margin-top: -50px;
+    margin-left: 500px;
+    width: 600px;
+    height: 40px;
+    align-items: center;   
+    display: flex;
+    
+  }
+
+  .musicplay .song-container .track #time {
+    padding: 0;
+    display: inline;
+    color: #cb2bfc;
+    margin-left: -170px;
+  }
+
+  .musicplay .song-container .track #total-time {
+    padding: 0;
+    display: inline;
+    color: #cb2bfc;
+  }
+
+
+  .musicplay .song-container .track #waveform {
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  
+
+
+

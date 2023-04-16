@@ -29,6 +29,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="https://unpkg.com/wavesurfer.js"></script>
   </head>
   <body>
     <div class="container">
@@ -102,9 +103,24 @@
         </div>
       </div>
       <div class="musicplay">
-        <div>
-          <img src="" alt="" />
-          <label for=""></label>
+        <div class="song-container">
+          <div class="imgMusic">
+            <img src="poster/1.jpg" alt="" />
+            <i class="fa fa-play-circle" aria-hidden="true" id="playBtn"></i>
+          </div>
+          <div class="song-info">
+            <div class="song-title">
+              <h4>Hãy trao cho anh</h4>
+            </div>
+            <div class="song-author">
+              <label for="song-author">Sơn Tùng</label>
+            </div>
+          </div>
+          <div class="track">
+            <div id="time"></div>
+            <div id="waveform"></div>
+            <div id="total-time"></div>
+          </div>
         </div>
       </div>
     </div>
