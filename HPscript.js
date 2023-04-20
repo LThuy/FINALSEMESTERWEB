@@ -50,9 +50,11 @@ function stopAuto() {
   clearInterval(intervalId);
 }
 
-var playButton = document.getElementById('playBtn');
+var playButton = document.getElementById('playBtn2');
+var buttonbackward = document.querySelector(".fa-backward");
+var buttonforward = document.querySelector(".fa-forward");
 var playField = document.getElementsByClassName('imgMusic')[0];
-var icon = document.querySelector(".fa-play-circle");
+var icons = document.querySelectorAll(".fa-play-circle");
 
 var wavesurfer = WaveSurfer.create({
   container: '#waveform',
@@ -60,7 +62,7 @@ var wavesurfer = WaveSurfer.create({
   progressColor: 'purple',
   barWidth: 5,
   responsive: true,
-  height: 60,
+  height: 40,
   barRadius: 4
 });
 
@@ -70,22 +72,44 @@ playField.onclick = function() {
   wavesurfer.playPause();
 
 }
-wavesurfer.on("play", function() {
-  // Remove the "fa-play-circle" class from the icon
-  icon.classList.remove("fa-play-circle");
 
-  // Add the "fa-pause-circle-o" class to the icon
-  icon.classList.add("fa-pause-circle-o");
+playButton.onclick = function() {
+  wavesurfer.playPause();
+
+}
+
+buttonbackward.onclick = function() {
+  wavesurfer.setPlaybackRate(wavesurfer.getPlaybackRate() - 0.5);
+}
+
+buttonforward.onclick = function() {
+  wavesurfer.setPlaybackRate(wavesurfer.getPlaybackRate() + 0.5);
+}
+
+wavesurfer.on("play", function() {
+  icons.forEach(function(icon) {
+     // Remove the "fa-play-circle" class from the icon
+    icon.classList.remove("fa-play-circle");
+
+    // Add the "fa-pause-circle-o" class to the icon
+    icon.classList.add("fa-pause-circle-o");
+  });
+  playButton.style.Position = "relative";
+  playButton.style.fontSize = "25px";
+  playButton.style.cursor = "pointer";
 
 });
 
 // Add an event listener to the wavesurfer instance for the "pause" event
 wavesurfer.on("pause", function() {
-  // Add the "fa-play-circle" class to the icon
-  icon.classList.add("fa-play-circle");
+  icons.forEach(function(icon) {
+     // Add the "fa-play-circle" class to the icon
+    icon.classList.add("fa-play-circle");
 
-  // Remove the "fa-pause-circle-o" class from the icon
-  icon.classList.remove("fa-pause-circle-o");
+    // Remove the "fa-pause-circle-o" class from the icon
+    icon.classList.remove("fa-pause-circle-o");
+  });
+ 
 
 });
 
@@ -151,6 +175,60 @@ wavesurfer.on('ready', function() {
 
 });
 
+var slider = document.getElementById("volume");
+var selector = document.getElementById("Selector");
+var volumeIcon = document.getElementsByClassName("fa-volume-up")[0];
+slider.addEventListener('input', function () { 
+  var x = slider.value * 100;
+  var color = 'linear-gradient(90deg, rgb(204, 0, 255)' + x + '% , rgb(156, 156, 156)' + x + '%)';
+  slider.style.background = color;
+  if(x < 50 && x > 0) {
+    volumeIcon.classList = [];
+    volumeIcon.classList.add("fa", "fa-volume-down");
+  } else if(x > 50) {
+    volumeIcon.classList = [];
+    volumeIcon.classList.add("fa", "fa-volume-up");
+  } else if(x < 1) {
+    volumeIcon.classList = [];
+    volumeIcon.classList.add("fa", "fa-volume-off");
+  }
+  setWaveSurferVolume(this.value);
+ })
+
+ volumeIcon.addEventListener('mouseover', function() {
+  var x = slider.value * 100;
+  var color = 'linear-gradient(90deg, rgb(204, 0, 255)' + x + '% , rgb(156, 156, 156)' + x + '%)';
+  slider.style.background = color;
+ })
+
+ var sliderValue = slider.value;
+ var statusVolume = "";
+ volumeIcon.addEventListener('click', function() {
+  slider.style.background = "";
+  if (slider.value != 0) {
+    // If the slider value is not 0, store the current volume icon class and set the volume to 0
+    splittk = volumeIcon.classList.value.split(" ");
+    statusVolume = splittk[1];
+    volumeIcon.classList = [];
+    volumeIcon.classList.add("fa", "fa-volume-off");
+    sliderValue = slider.value;
+    slider.value = 0;
+    setWaveSurferVolume(0);
+  } else {
+    // If the slider value is 0, restore the previous volume icon class and slider value
+    volumeIcon.classList.replace("fa-volume-off", statusVolume.trim());
+    slider.value = sliderValue;
+    setWaveSurferVolume(sliderValue);
+  }
+  var x = slider.value * 100;
+  var color = 'linear-gradient(90deg, rgb(204, 0, 255)' + x + '% , rgb(156, 156, 156)' + x + '%)';
+  slider.style.background = color;
+ })
+
+
+ function setWaveSurferVolume(volume) {
+  wavesurfer.setVolume(volume);
+}
 
 startAuto()
 

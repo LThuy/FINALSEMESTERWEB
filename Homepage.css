@@ -80,8 +80,6 @@ body {
     color: white;
   }
 
-  .MyArea h4 span.My-application {
-  }
 
   .MyArea h4:hover,
   .MyArea h4:hover span .fa,
@@ -107,8 +105,61 @@ body {
     border-radius: 0 8px 0 0 ;
   }
 
+  .Display .headerDisplay {
+    width: 100%;
+    position: relative;
+  }
+  
+
+  .Display .headerDisplay .search-area {
+    position: absolute;
+    width: 350px;
+    height: 30px;
+    top: 30px;
+    left: 100px;
+    padding: 4px;
+    border: 1px solid #2c0263;
+    background-color: #9111db;
+    border-radius: 8px;
+    
+  }
+
+  .Display .headerDisplay .search-area:hover {
+    border: 1px solid #e8c1ff;
+  }
+
+  .Display .headerDisplay .search-area span {
+    background-color: #000000;
+    border-radius: 8px;
+    padding: 1px;
+  }
+
+  .Display .headerDisplay .search-area span .fa-search {
+    color: #ffffff;
+    padding: 1px;   
+    
+  }
+
+  .Display .headerDisplay .search-area input {
+    color: #fff;
+    width: 93%;
+    height: 100%;
+    background-color: #9111db;
+    border: none;
+    border-radius: 0px 8px 8px 0px;
+    
+  }
+
+  .Display .headerDisplay .search-area input::placeholder {
+    color: #ffffff;
+  }
+
+  .Display .headerDisplay .search-area input:focus {
+    outline: none;
+  }
+
   .carousel {
-    margin-top: 86px;
+    margin-top: 105px;
     border: 1px solid rgb(116, 114, 114);
     height: 395px;
     overflow: hidden;
@@ -219,6 +270,10 @@ body {
     border-radius: 0 0 8px 8px ;
   }
 
+  .musicplay .song-container {
+    position: relative;
+  }
+
   .musicplay .imgMusic {
     display: inline-block;
     width: 60px;
@@ -229,8 +284,7 @@ body {
   }
 
   .musicplay .imgMusic i:hover,
-  .musicplay .imgMusic img:hover,
-  .musicplay .imgMusic img {
+  .musicplay .imgMusic img:hover {
     filter: blur(1px);
   }
 
@@ -290,9 +344,33 @@ body {
     color: #fff;
   }
 
+  .musicplay .song-container .audio-controls {
+    height: 30px;
+    width: 200px;
+    position: absolute;
+    top: 10px;
+    left: 650px;
+  }
+
+  .musicplay .song-container .audio-controls .fa-play-circle {
+    position: relative;
+    font-size: 25px;
+    top: 2px;
+  }
+
+  .musicplay .song-container .audio-controls i {
+    padding: 8px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .musicplay .song-container .audio-controls i:hover {
+    color: #7c009b;
+  }
+
   .musicplay .song-container .track {
-    margin-top: -50px;
-    margin-left: 500px;
+    margin-top: -30px;
+    margin-left: 550px;
     width: 600px;
     height: 40px;
     align-items: center;   
@@ -318,6 +396,72 @@ body {
     width: 100%;
     margin-left: 20px;
   }
+
+  .musicplay .song-container .volume-controls {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 20px;
+    top: 57px;
+    left: 1100px;
+  }
+
+  .musicplay .song-container .volume-controls i {
+    color: #ae57ff;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+    width: 20px;
+  }
+
+  
+
+  .musicplay .song-container .volume-controls input {
+    display: none;
+  }
+
+  .musicplay .song-container .volume-controls .fa-volume-up:hover {
+    color: #740194;
+  }
+
+  .musicplay .song-container .volume-controls:hover input {
+  display: inline-block;
+  -webkit-appearance: none;
+  position: absolute;
+  width: 90px;
+  height: 10px;
+  top: -50px;
+  left: -40px;
+  opacity: 0.7;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #8100a1; 
+  background-color: #353535;
+  -webkit-transition: linear-gradient(90deg,rgb(78, 78, 78),rgb(156, 156, 156));
+  transform: rotate(270deg);
+  cursor: grab;
+}
+
+.musicplay .song-container .volume-controls:hover input:hover {
+  opacity: 1;
+}
+
+.musicplay .song-container .volume-controls:hover input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #390047;
+  cursor: grabbing;
+  position: relative;
+}
+
+
+
+
+
+
 
   
 
