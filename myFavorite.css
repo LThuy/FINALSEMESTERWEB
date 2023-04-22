@@ -1,0 +1,131 @@
+.container2 {
+    position: absolute;
+    display: inline-block;
+    height: 395px;
+    width: 100%;
+    background-color: rgb(236, 175, 255);
+    overflow: auto;    
+}
+
+.container2::-webkit-scrollbar {
+    height: 100%;
+    width: auto;
+}
+
+.container2::-webkit-scrollbar-track {
+    background-color: #1b0329;
+    border-left: 1px solid #f1f1f1;
+}
+
+.container2::-webkit-scrollbar-thumb {
+    background-color: #df9aff;
+    border-radius: 5px;
+    border: 1px solid #f1f1f1;
+  }
+
+.container2 .header {
+    width: 100%;
+    height: 220px;
+    background-color: rgb(226, 43, 134);
+    background: linear-gradient(90deg, rgb(250, 101, 230),rgb(102, 3, 127));
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+    
+}
+
+.container2 .header .title {
+    position: relative;
+    top: 30px;
+    display: flex;
+    width: 100%;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+.container2 .header .title .imageFav {
+    width: 25%;
+    height: 100%;
+
+}
+
+.container2 .header .title .imageFav img {
+    width: 80%;
+    height: 100%;
+}
+
+.container2 .header .title h4 {
+    margin-left: 20px;
+    color: #fff;
+    font-size: 40px;
+}
+
+.container2 .header .musicPlay {
+    position: absolute;
+    top: 150px;
+    right: 340px;
+}
+
+.container2 .header .musicPlay .fa {
+    font-size: 30px;
+    margin: 5px;
+}
+
+.container2 .header .musicPlay .fa:hover {
+    color: rgb(212, 167, 255);
+}
+
+.container2 .favSongs {
+    width: 100%;
+    height: 100%;
+
+}
+
+.container2 .favSongs .songs {
+    width: 100%;
+    height: 100%;
+}
+
+.container2 .favSongs .songs li {
+    max-width: 100%;
+    height: 20%;
+    padding: 8px;
+    border: 1px solid rgb(83, 83, 83);
+    list-style-type: none;
+    display: flex;
+    background: linear-gradient(90deg, rgb(37, 0, 32),rgb(133, 20, 161));
+    cursor: pointer;
+  
+}
+
+.container2 .favSongs .songs li:hover {
+    filter: brightness(80%);
+}
+
+.container2 .favSongs .songs li img {
+    width: 10%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.container2 .favSongs .songs li h5 {
+    font-family: "Futura PT", sans-serif;
+    margin-top: 0;
+    margin-left: 15px;
+    font-size: 15px;
+    line-height: 20px;
+    color: aliceblue;
+}
+
+.container2 .favSongs .songs li h5 .sub {
+    font-family: "Futura PT", sans-serif;
+    font-size: 9px;
+    line-height: 15px;
+    color: rgb(192, 191, 191);
+}
+
+
+
+
+
+
+

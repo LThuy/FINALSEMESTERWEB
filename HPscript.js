@@ -230,6 +230,32 @@ slider.addEventListener('input', function () {
   wavesurfer.setVolume(volume);
 }
 
+$('.my_music').click(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: "mymusics.html",
+    success: function(data) {
+      $(".carousel").empty();
+      $(".carousel").html(data);
+    }
+  });
+});
+
+
+$('.my_fav').click(function(e){
+  e.preventDefault();
+  $.ajax({
+    url: "myFavorites.html",
+    success: function(data) {
+      $(".carousel").empty();
+      $(".carousel").html(data);
+    }
+  });
+});
+
+
+
+
 startAuto()
 
 

@@ -3,7 +3,7 @@
 }
 
 body {
-  background: linear-gradient(-45deg, #30dddd, #48044e, #2b4ee9, #fa1e68);
+  background-color: #7c009b;
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
     
@@ -24,7 +24,7 @@ body {
 .container {
     display: flex;
     flex-wrap: wrap;
-    opacity: 90%;
+    opacity: 100%;
   }
   
   .Title {
@@ -162,8 +162,8 @@ body {
     margin-top: 105px;
     border: 1px solid rgb(116, 114, 114);
     height: 395px;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
   }
 
   .carousel::before {
