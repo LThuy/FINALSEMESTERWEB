@@ -73,11 +73,11 @@ body {
     line-height: 30px;
   }
 
-  .MyArea h4 span {
+  .MyArea h4 span{
     margin-top: 20px;
     margin-left: 30px;
     padding-bottom: 15px;
-    color: white;
+    color: rgb(255, 255, 255);
   }
 
 
@@ -341,6 +341,10 @@ body {
   .musicplay .song-info .song-author {
     font-size: 13px;
     margin-top: 10px;
+    color: #fff;
+  }
+
+  .musicplay .song-info .fa.fa-heart {
     color: #fff;
   }
 
