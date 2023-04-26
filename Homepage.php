@@ -1,10 +1,11 @@
 <?php
-  require_once('database/account_db.php');
-  session_start();
-  if (!isset($_SESSION['username'])) {
-    header('Location: Login.php');
-    exit();
-  }
+require_once('database/account_db.php');
+session_start();
+if (!isset($_SESSION['username'])) {
+  header('Location: Login.php');
+  exit();
+}
+$username = $_SESSION['username']
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homepage</title>
-  <link rel="stylesheet" href="Homepage.css" />
+  <link rel="stylesheet" href="homepage2.css" />
   <!-- Add the jQuery library -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -33,7 +34,7 @@
     <div class="Title">
       <div class="personalInfos">
         <img src="images/logo.png" alt="" />
-        <label for="">Lê Thanh Huy</label>
+        <label for="" id="username"><?= $username ?></label>
       </div>
       <div class="MyArea">
         <h4 class="my_music">
@@ -41,7 +42,7 @@
             <i class="fa fa-home" aria-hidden="true"></i>
           </span>
           <span style="display: inline-block" class="My-application">
-            My Musics
+            <a href="mymusics.php" class="m_musics">My musics</a>
           </span>
         </h4>
         <h4 class="my_fav">
@@ -49,7 +50,7 @@
             <i class="fa fa-heart" aria-hidden="true"></i>
           </span>
           <span style="display: inline-block" class="My-application">
-            My Favorites
+            <a href="myFavorites.php" class="m_favorites">My favorites</a>
           </span>
         </h4>
         <h4>
@@ -76,48 +77,45 @@
         <div class="search-area">
           <span><i class="fa fa-search" aria-hidden="true"></i></span>
           <input type="text" placeholder="Search songs, artists,..." />
-          <a href="Logout.php">Log out</a>
+        </div>
+        <div class="logout">
+          <a href="Logout.php" id="log_out">Log out</a>
         </div>
       </div>
       <div class="carousel">
-        <div class="list-images">
-          <img src="poster/1.jpg" alt="" />
-          <img src="poster/2.jpg" alt="" style="display: none" />
-          <img src="poster/3.jpg" alt="" style="display: none" />
-          <img src="poster/4.jpg" alt="" style="display: none" />
-          <img src="poster/5.jpg" alt="" style="display: none" />
-          <div class="btn">
-            <button class="prev">
-              <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            </button>
-            <button class="next">
-              <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </button>
-          </div>
-          <div class="songInfos">
-            <div>
-              <label for="">Song: <span class="Name-song"></span></label>
-            </div>
-            <div>
-              <label for="">Author: <span class="Name-song"></span></label>
+        <main>
+          <div class="list-images">
+            <img src="poster/1.jpg" alt="" />
+            <img src="poster/2.jpg" alt="" style="display: none" />
+            <img src="poster/3.jpg" alt="" style="display: none" />
+            <img src="poster/4.jpg" alt="" style="display: none" />
+            <img src="poster/5.jpg" alt="" style="display: none" />
+            <div class="btn">
+              <button class="prev">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              </button>
+              <button class="next">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
-        </div>
+        </main>
       </div>
     </div>
     <div class="musicplay">
       <div class="song-container">
         <div class="imgMusic">
-          <img src="poster/1.jpg" alt="" />
+          <img src="poster/1.jpg" alt="" class="image_src" />
           <i class="fa fa-play-circle" aria-hidden="true" id="playBtn"></i>
         </div>
         <div class="song-info">
           <div class="song-title">
-            <h4>Hãy trao cho anh</h4>
+            <h4 class="name_song"></h4>
           </div>
           <div class="song-author">
-            <label for="song-author">Sơn Tùng</label>
+            <label for="song-author" class="name_author"></label>
           </div>
+          <i class="fa fa-heart song-action" aria-hidden="true"></i>
         </div>
         <div class="audio-controls" style="color: #fff">
           <span><i class="fa fa-step-backward" aria-hidden="true"></i></span>
@@ -141,6 +139,8 @@
     </div>
   </div>
 </body>
-<script src="HPscript.js"></script>
+<script src="Homepage.js"></script>
+<script src="mymusics.js"></script>
+<script src="myFavScript.js"></script>
 
 </html>

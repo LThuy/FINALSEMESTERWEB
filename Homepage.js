@@ -1,6 +1,18 @@
-
-
 $(document).ready(function() {
+  const logout = document.getElementsByClassName("logout")[0];
+  const logoutbtn = document.getElementById("log_out");
+
+  logout.addEventListener("mouseover", function() {
+    logoutbtn.style.color = 'rgb(255, 255, 255)';
+  })
+
+  logout.addEventListener("mouseleave", function() {
+    logoutbtn.style.color = ' #fa2c5f';
+  })
+
+
+
+
     const images = document.querySelectorAll('.list-images img');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
@@ -53,6 +65,7 @@ function stopAuto() {
   clearInterval(intervalId);
 }
 var wavesurfer = WaveSurfer.create({
+    backend: 'MediaElement',
     container: '#waveform',
     waveColor: '#ddd',
     progressColor: 'purple',
@@ -63,18 +76,15 @@ var wavesurfer = WaveSurfer.create({
   });
 
 
-
 wavesurfer.on('ready', function() {
 
     var playButton = document.getElementById('playBtn2');
     var buttonbackward = document.querySelector(".fa-backward");
     var buttonforward = document.querySelector(".fa-forward");
     var playField = document.getElementsByClassName('imgMusic')[0];
-    var icons = document.querySelectorAll(".fa-play-circle");
+       
     
-    
-    
-    
+    wavesurfer.playPause();
     
     playField.onclick = function() {
        
@@ -96,32 +106,27 @@ wavesurfer.on('ready', function() {
     }
     
     wavesurfer.on("play", function() {
-      icons.forEach(function(icon) {
-         // Remove the "fa-play-circle" class from the icon
-        icon.classList.remove("fa-play-circle");
-    
-        // Add the "fa-pause-circle-o" class to the icon
-        icon.classList.add("fa-pause-circle-o");
-      });
+      $("#playBtn").removeClass("fa-play-circle");
+      $("#playBtn").addClass("fa-pause-circle-o");
+      $("#playBtn2").removeClass("fa-play-circle");
+      $("#playBtn2").addClass("fa-pause-circle-o");  
       playButton.style.Position = "relative";
       playButton.style.fontSize = "25px";
       playButton.style.cursor = "pointer";
-    
     });
+
+
+    
     
     // Add an event listener to the wavesurfer instance for the "pause" event
     wavesurfer.on("pause", function() {
-      icons.forEach(function(icon) {
-         // Add the "fa-play-circle" class to the icon
-        icon.classList.add("fa-play-circle");
-    
-        // Remove the "fa-pause-circle-o" class from the icon
-        icon.classList.remove("fa-pause-circle-o");
-      });
-     
-    
+      $("#playBtn").addClass("fa-play-circle");
+      $("#playBtn").removeClass("fa-pause-circle-o");  
+      $("#playBtn2").addClass("fa-play-circle");
+      $("#playBtn2").removeClass("fa-pause-circle-o");           
     });
-    wavesurfer.playPause();
+
+    
 
     
      
@@ -133,6 +138,7 @@ wavesurfer.on('ready', function() {
 
   wavesurfer.on('audioprocess', function() {
     
+   
      // Apply CSS changes only to the song with 'active' class
      if (wavesurfer.isPlaying()) {
         // Apply CSS changes only to the song with 'active' class
@@ -251,6 +257,9 @@ slider.addEventListener('input', function () {
   wavesurfer.setVolume(volume);
 }
 
+var name_song;
+var author;
+var image;
     $('.m_musics').click(function(event) {    
        
       event.preventDefault();
@@ -286,11 +295,17 @@ slider.addEventListener('input', function () {
             })
         }
 
-        $(".songItem").click(function(event) {            
-            const id = $(event.currentTarget).attr("data-id");
+       var play;
+        $(".songItem").click(function(event) {     
+            const id = $(event.currentTarget).attr("data-id");              
                 wavesurfer.load(id);
-                $(event.currentTarget).find('.fa-play-circle')
-                setTimeout(function() {
+                setTimeout(function() {      
+                  $("#playBtn3").removeClass();
+                  $("#playBtn3").addClass('fa fa-play-circle');    
+                  play = $(event.currentTarget).find('#playBtn3');
+                  $(play).removeClass("fa-play-circle");
+                  $(play).addClass("fa-pause-circle-o");  
+                  $(".song-action").removeClass('active');
                     var img = $('.imgMusic').find('img');
                 var namesong = $('.song-info').find('.name_song');
                 var author_song =  $('.song-info').find('.name_author');
@@ -298,8 +313,11 @@ slider.addEventListener('input', function () {
                 var songTitleText = songTitle.contents().filter(function() {
                   return this.nodeType === 3; // Select only text nodes
                 }).text().trim(); // Concatenate and trim the text content
+                name_song = songTitleText;
                 namesong.html(songTitleText);
+                author = $(event.currentTarget).find('.subtitle').text();
                 author_song.html($(event.currentTarget).find('.subtitle').text());
+                image = $(event.currentTarget).find('img').attr('src');
                 img.attr('src', $(event.currentTarget).find('img').attr('src')); 
 
                 // Get the previous song item that has the 'active' class
@@ -316,11 +334,32 @@ slider.addEventListener('input', function () {
                 });
                 // Add 'active' class to the clicked song
                 $(event.currentTarget).addClass('active');        
-                }, 1200);
+                }, 1000);
+
+              
+                 
+              
          });
         
+         wavesurfer.on("pause", function() {
+          $(play).removeClass("fa-pause-circle-o");
+          $(play).addClass("fa-play-circle");
+         })
+
+        
+          wavesurfer.on("play", function() {        
+            setTimeout(function() {
+              $(play).removeClass("fa-play-circle");
+              $(play).addClass("fa-pause-circle-o"); 
+            },1100);                     
+           })
+        
+
+
         }
       });
+
+
         
     });        
 
@@ -331,32 +370,64 @@ slider.addEventListener('input', function () {
           url: url,
           success: function(data) {
             $('main').html(data);
+
+            $(".songInfo").click(function(e) {
+              const id = $(e.currentTarget).attr("data-id");
+              wavesurfer.load(id);
+            })
           }
         });
       });
   
-    const name_song = document.getElementsByClassName("name_song");
-    const song_author = document.getElementsByClassName("song_author");
-    const image = document.getElementsByClassName("image_src");
-    $('.fa-heart').click(function(e) {
-        $.ajax({
-            url: "apis/checkFavSong.php",
-            method: "POST",
-            data: { 
-                userID: "John",
-                age: 30
-            },
-            success: function(data) {
-                if(data == true) {
-                    this.style.color = '#ae00ff';
-                } else {
-                    this.style.color = '#fff';
-                }
-            }
-        })
-    })
+    var username = document.getElementById("username").innerText;
+        
+    // Use the current playback time to get the corresponding URL
 
+    $('.song-action').click(function(e) {
+      if(name_song != "" && author != "" && image != "") {
+        var heartIcon = $(this);
+        var link;
+        if (wavesurfer.backend.media.src) {
+          var parts = wavesurfer.backend.media.src.split('/');
+          var filename = parts.slice(-1)[0];
+          var path = parts.slice(-2, -1)[0] + '/' + filename;
+          link = path;
+         }  
+         console.log(username);
+         console.log(name_song);
+         console.log(author);
+         console.log(image);
+        console.log(link);
+        $.ajax({
+          url: "apis/checkFavSong.php",
+          method: "POST", 
+          data: {
+            user: username,
+            namesong: name_song,
+            author: author,
+            link: link,
+            image: image
+          },
+          success: function(response) {
+            console.log(response);
+            console.log("true");           
+            if (response == 'true') {
+              heartIcon.addClass('active');
+            } else {
+              heartIcon.removeClass('active');
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Error:", textStatus, errorThrown);
+          }
+        });
+      }    
+    });
+    
+                
     startAuto();
+
+
   });
 
 

@@ -21,10 +21,12 @@ function get_musics()
 
 }
 
-function get_fav_songs()
+function get_fav_songs($user)
 {
     $conn = get_connection();
-    $sql = $conn->query("Select namesong,author,link,image from favsong");
+
+    $sql = $conn->query("SELECT namesong, author, link, image FROM favsong WHERE usernameid = '" . $user . "'");
+
     if (!$sql) {
         die('Invalid query: ' . $conn->error);
     }
@@ -32,35 +34,50 @@ function get_fav_songs()
     while ($row = $sql->fetch_assoc()) {
         $data[] = $row;
     }
-    if (count($data) == 0) {
-        return json_encode(array('status' => false, 'error' => 'No data found.'));
+    return $data;
+    // TODO: viết chức năng đọc tất cả sản phẩm ở đây
+}
+
+function checkSongExisted($namesong)
+{
+    $conn = get_connection();
+
+    $sql = $conn->query("SELECT namesong, author, link, image FROM favsong WHERE namesong = '" . $namesong . "'");
+
+    if (!$sql) {
+        die('Invalid query: ' . $conn->error);
+    }
+    $data = array();
+    while ($row = $sql->fetch_assoc()) {
+        $data[] = $row;
     }
     return $data;
     // TODO: viết chức năng đọc tất cả sản phẩm ở đây
 }
 
-function check_fav_songs($userID, $namesong, $author, $image, $link)
+function check_fav_songs($user, $namesong, $author, $link, $image)
 {
-    $result = get_fav_songs($userID);
+    $result = array();
+    $result = checkSongExisted($namesong);
 
-    if ($result != "") {
+    if (!empty($result)) {
         $conn = get_connection();
-        $sql = $conn->query("DELETE from favsong WHERE usernameid = ?");
+        $sql = "DELETE FROM favsong WHERE namesong = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $userID);
+        $stmt->bind_param("s", $namesong);
         if (!$stmt->execute()) {
             return array('code' => 1, 'error' => 'Invalid');
         }
-        return false;
+        return "false";
     } else {
         $conn = get_connection();
-        $sql = $conn->query("INSERT namesong,author,link,image,usernameid INTO favsong VALUES(?,?,?,?) WHERE usernameid = ?");
+        $sql = "INSERT INTO favsong (namesong, author, link, image, usernameid) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssi", $namesong, $author, $link, $image, $userID);
+        $stmt->bind_param("sssss", $namesong, $author, $link, $image, $user);
         if (!$stmt->execute()) {
             return array('code' => 1, 'error' => 'Invalid');
         }
-        return true;
+        return "true";
     }
 }
 

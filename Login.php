@@ -1,35 +1,35 @@
 <?php
 
-  require_once('database/account_db.php');
+require_once('database/account_db.php');
 
-  session_start();
-  if (isset($_SESSION['username'])) {
+session_start();
+if (isset($_SESSION['username'])) {
+  header('Location: Homepage.php');
+  exit();
+}
+
+$error = '';
+
+$user = '';
+$pass = '';
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+  $user = $_POST['username'];
+  $pass = $_POST['password'];
+
+  if (empty($user)) {
+    $error = 'Please enter your username';
+  } else if (empty($pass)) {
+    $error = 'Please enter your password';
+  } else if (strlen($pass) < 6) {
+    $error = 'Password must have at least 6 characters';
+  } else if (login($user, $pass)) {
     header('Location: Homepage.php');
     exit();
+  } else {
+    $error = 'Invalid username or password';
   }
-
-  $error = '';
-
-  $user = '';
-  $pass = '';
-
-  if (isset($_POST['username']) && isset($_POST['password'])) {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
-
-    if (empty($user)) {
-      $error = 'Please enter your username';
-    } else if (empty($pass)) {
-      $error = 'Please enter your password';
-    } else if (strlen($pass) < 6) {
-      $error = 'Password must have at least 6 characters';
-    } else if (login($user, $pass)) {
-      header('Location: Homepage.php');
-      exit();
-    } else {
-      $error = 'Invalid username or password';
-    }
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,11 +65,6 @@
     <div class="login-form">
       <form action="" method="post">
         <div class="form-group">
-          <?php
-          if (!empty($error)) {
-            echo "<div>$error</div>";
-          }
-          ?>
         </div>
         <h4>Login</h4>
         <div class="form-group">
@@ -80,6 +75,11 @@
           <input type="password" id="password" name="password" placeholder=" " />
           <label for="password" class="password">Password</label>
         </div>
+        <?php
+        if (!empty($error)) {
+          echo "<div id='error'>$error</div>";
+        }
+        ?>
         <span><a href="" class="forgot-pw">Forgot your password?</a></span>
         <button type="submit" value="Login" name="sign-in-button" id="sign-in">
           Login
@@ -105,6 +105,6 @@
     </div>
   </div>
 </body>
-<script src="Script.js"></script>
+<script src="Login.js"></script>
 
 </html>

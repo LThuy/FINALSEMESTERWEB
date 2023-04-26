@@ -3,9 +3,9 @@
 }
 
 body {
-  background-color: #7c009b;
+  background-color: #890ca5;
 	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+	
     
   }
 
@@ -51,12 +51,14 @@ body {
 
   .Title .personalInfos label {
     display: inline-block;
+    height: fit-content;
     margin-top: 30px;
     margin-left: 30px;
     color: #ffffff;
     margin-left: 5px;
     vertical-align: top;
   }
+
 
   .MyArea {
     border: 1px solid white;
@@ -78,6 +80,15 @@ body {
     margin-left: 30px;
     padding-bottom: 15px;
     color: rgb(255, 255, 255);
+  }
+
+  .MyArea h4 span a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+
+  .MyArea h4:hover span a {
+    color: #ff28d8;
   }
 
 
@@ -109,6 +120,31 @@ body {
     width: 100%;
     position: relative;
   }
+
+  .Display .headerDisplay .logout {
+    width: 70px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .Display .headerDisplay .logout:hover {
+    background-color: #fa2c5f;
+  }
+
+
+  .Display .headerDisplay .logout #log_out{
+    line-height: 10px;
+    text-decoration: none;
+    color: #fa2c5f;
+  }
+ 
   
 
   .Display .headerDisplay .search-area {
@@ -347,7 +383,7 @@ body {
     color: #fff;
   }
 
-  .musicplay .song-info .fa-heart {
+  .musicplay .song-info .song-action {
     color: #fcfcfc;
     position: relative;
     top: -2px;
@@ -356,7 +392,13 @@ body {
 
   }
 
-  .musicplay .song-info .fa-heart:hover {
+  
+
+  .musicplay .song-info .song-action.active {
+    color: #ae00ff;
+  }
+
+  .musicplay .song-info .song-action:hover {
     color: #ae00ff;
   }
 

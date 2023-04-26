@@ -34,7 +34,7 @@ $musics = get_musics();
           <li class="songItem" data-id="<?= $m['link'] ?>">
             <div class="img_play">
               <img src="<?= $m['image'] ?>" alt="" />
-              <i class="fa fa-play-circle" ria-hidden="true"></i>
+              <i class="fa fa-play-circle" ria-hidden="true" id="playBtn3"></i>
             </div>
             <h5 class="song-group">
               <?= $m['name'] ?>
@@ -44,61 +44,6 @@ $musics = get_musics();
           </li>
         <?php }
         ?>
-        <li class="songItem">
-          <div class="img_play">
-            <img src="poster/1.jpg" alt="" />
-            <i class="fa fa-play-circle" ria-hidden="true" id="8"></i>
-          </div>
-          <h5>
-            Hãy trao cho anh
-            <br />
-            <div class="subtitle">Sơn Tùng MT-P</div>
-          </h5>
-        </li>
-        <li class="songItem">
-          <div class="img_play">
-            <img src="poster/1.jpg" alt="" />
-            <i class="fa fa-play-circle" ria-hidden="true" id="8"></i>
-          </div>
-          <h5>
-            Hãy trao cho anh
-            <br />
-            <div class="subtitle">Sơn Tùng MT-P</div>
-          </h5>
-        </li>
-        <li class="songItem">
-          <div class="img_play">
-            <img src="poster/1.jpg" alt="" />
-            <i class="fa fa-play-circle" ria-hidden="true" id="8"></i>
-          </div>
-          <h5>
-            Hãy trao cho anh
-            <br />
-            <div class="subtitle">Sơn Tùng MT-P</div>
-          </h5>
-        </li>
-        <li class="songItem">
-          <div class="img_play">
-            <img src="poster/1.jpg" alt="" />
-            <i class="fa fa-play-circle" ria-hidden="true" id="9"></i>
-          </div>
-          <h5>
-            Hãy trao cho anh
-            <br />
-            <div class="subtitle">Sơn Tùng MT-P</div>
-          </h5>
-        </li>
-        <li class="songItem">
-          <div class="img_play">
-            <img src="poster/1.jpg" alt="" />
-            <i class="fa fa-play-circle" ria-hidden="true" id="10"></i>
-          </div>
-          <h5>
-            Hãy trao cho anh
-            <br />
-            <div class="subtitle">Sơn Tùng MT-P</div>
-          </h5>
-        </li>
       </div>
       <div class="under"></div>
     </div>

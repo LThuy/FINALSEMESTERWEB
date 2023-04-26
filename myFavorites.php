@@ -1,7 +1,13 @@
 <?php
 require_once("php/music_db.php");
 
-$musics = get_fav_songs();
+session_start();
+
+if (isset($_SESSION['username'])) {
+  $username = $_SESSION['username'];
+}
+
+$musics = get_fav_songs($username);
 
 ?>
 
@@ -26,24 +32,20 @@ $musics = get_fav_songs();
         </div>
         <h4>Your favorite songs</h4>
       </div>
-      <div class="musicPlay">
-        <i class="fa fa-step-backward" aria-hidden="true"></i>
-        <i class="fa fa-backward" aria-hidden="true"></i>
-        <i class="fa fa-play-circle" aria-hidden="true"></i>
-        <i class="fa fa-forward" aria-hidden="true"></i>
-        <i class="fa fa-step-forward" aria-hidden="true"></i>
-      </div>
+     
     </div>
     <div class="favSongs">
       <div class="songs">
-        <?php foreach ($musics as $m) { ?>
-          <li class="songInfo">
-            <img src="<?= $m['image'] ?>" alt="" />
-            <h5>
-              <?= $m['namesong'] ?>
-              <div class="sub"><?= $m['author'] ?></div>
-            </h5>
-          </li>
+        <?php if (is_array($musics) && count($musics) > 0) { ?>
+          <?php foreach ($musics as $m) { ?>
+            <li class="songInfo" data-id="">
+              <img src="<?= $m['image'] ?>" alt="" />
+              <h5>
+                <?= $m['namesong'] ?>
+                <div class="sub"><?= $m['author'] ?></div>
+              </h5>
+            </li>
+          <?php } ?>
         <?php } ?>
       </div>
     </div>
