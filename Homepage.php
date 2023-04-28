@@ -1,5 +1,5 @@
 <?php
-require_once('database/account_db.php');
+require_once('php/music_db.php');
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: Login.php');
@@ -16,7 +16,8 @@ $username = $_SESSION['username']
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homepage</title>
-  <link rel="stylesheet" href="homepage2.css" />
+  <link rel="stylesheet" href="Homepage.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <!-- Add the jQuery library -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -42,7 +43,7 @@ $username = $_SESSION['username']
             <i class="fa fa-home" aria-hidden="true"></i>
           </span>
           <span style="display: inline-block" class="My-application">
-            <a href="mymusics.php" class="m_musics">My musics</a>
+            <a href="mymusics.php" class="m_musics">My Musics</a>
           </span>
         </h4>
         <h4 class="my_fav">
@@ -50,7 +51,7 @@ $username = $_SESSION['username']
             <i class="fa fa-heart" aria-hidden="true"></i>
           </span>
           <span style="display: inline-block" class="My-application">
-            <a href="myFavorites.php" class="m_favorites">My favorites</a>
+            <a href="myFavorites.php" class="m_favorites">My Favorites</a>
           </span>
         </h4>
         <h4>
@@ -58,7 +59,7 @@ $username = $_SESSION['username']
             <i class="fa fa-music" aria-hidden="true"></i>
           </span>
           <span style="display: inline-block" class="My-application">
-            My playlists
+            <a href="Chart.php" class="m_charts">My Charts</a>
           </span>
         </h4>
         <div class="bar"></div>
@@ -67,7 +68,7 @@ $username = $_SESSION['username']
             <i class="fa fa-book" aria-hidden="true"></i>
           </span>
           <span style="display: inline-block" class="My-application">
-            Library
+            <a href="Categories.php" class="m_categories">Categories</a>
           </span>
         </h4>
       </div>
@@ -135,10 +136,20 @@ $username = $_SESSION['username']
           <input type="range" id="volume" min="0" max="1" step="0.1" value="1" />
           <!-- <div id="progressBar"></div> -->
         </div>
+        <div class="download-controls">
+          <a href="song.mp3" download="" class="download-link">
+            <span class="download-icon"><i class="fa fa-download" aria-hidden="true"></i></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </body>
+<div id="custom-dialog">
+  <h2>Do you want to exit ?</h2>
+  <button id="confirm-yes">Yes</button>
+  <button id="confirm-no">No</button>
+</div>
 <script src="Homepage.js"></script>
 <script src="mymusics.js"></script>
 <script src="myFavScript.js"></script>

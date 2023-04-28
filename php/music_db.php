@@ -1,6 +1,43 @@
 <?php
 require_once('connection.php');
 
+
+function login($username, $password)
+{
+
+
+    // Create connection
+    $conn = get_connection();;
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT username, password FROM account WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['username'] = $username;
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+
+
+
 function get_musics()
 {
     $conn = get_connection();
@@ -80,6 +117,8 @@ function check_fav_songs($user, $namesong, $author, $link, $image)
         return "true";
     }
 }
+
+
 
 function get_product($id)
 {

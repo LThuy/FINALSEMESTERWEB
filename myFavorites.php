@@ -32,13 +32,13 @@ $musics = get_fav_songs($username);
         </div>
         <h4>Your favorite songs</h4>
       </div>
-     
+
     </div>
     <div class="favSongs">
       <div class="songs">
         <?php if (is_array($musics) && count($musics) > 0) { ?>
           <?php foreach ($musics as $m) { ?>
-            <li class="songInfo" data-id="">
+            <li class="songInfo" data-id="<?= $m['link'] ?>">
               <img src="<?= $m['image'] ?>" alt="" />
               <h5>
                 <?= $m['namesong'] ?>

@@ -374,6 +374,19 @@ var image;
             $(".songInfo").click(function(e) {
               const id = $(e.currentTarget).attr("data-id");
               wavesurfer.load(id);
+              var img = $('.imgMusic').find('img');
+              var namesong = $('.song-info').find('.name_song');
+              var author_song =  $('.song-info').find('.name_author');
+              var songTitle = $(e.currentTarget).find('h5');
+              var songTitleText = songTitle.contents().filter(function() {
+                return this.nodeType === 3; // Select only text nodes
+              }).text().trim(); // Concatenate and trim the text content
+              name_song = songTitleText;
+              namesong.html(songTitleText);
+              author = $(e.currentTarget).find('.sub').text();
+              author_song.html($(e.currentTarget).find('.sub').text());
+              image = $(e.currentTarget).find('img').attr('src');
+              img.attr('src', $(e.currentTarget).find('img').attr('src')); 
             })
           }
         });
@@ -423,6 +436,66 @@ var image;
         });
       }    
     });
+
+    $('.m_charts').click(function(event) { 
+      event.preventDefault();
+      var url = $(this).attr('href');
+      $.ajax({
+        url: url,
+        success: function(data) {
+          $('main').html(data);
+        }
+      });
+    });
+
+    //load html from categories.php
+    $('.m_categories').click(function(event) { 
+      event.preventDefault();
+      var url = $(this).attr('href');
+      $.ajax({
+        url: url,
+        success: function(data) {
+          $('main').html(data);
+        }
+      });
+    });
+
+    //create download link
+    $('.download-link').click(function(e) {
+      var parts = wavesurfer.backend.media.src.split('/');
+      var filename = parts.slice(-1)[0];
+      var path = parts.slice(-2, -1)[0] + '/' + filename;
+      link = path;
+      $(this).attr("href", link);
+      $(this).attr("download", filename);      
+    })
+
+
+    $('#log_out').click(function(e) {
+      e.preventDefault();
+       //Show dialog confirm when log out
+       var customDialog = document.getElementById("custom-dialog");
+       var confirmYes = document.getElementById("confirm-yes");
+       var confirmNo = document.getElementById("confirm-no");
+        var body = document.getElementsByTagName('body')[0];
+        body.classList.add("enableBlur");
+        customDialog.classList.add("disableBlur");
+       
+       confirmYes.addEventListener("click", function() {
+         // Code to delete the item goes here
+         customDialog.style.display = "none";
+         window.location.href = "Logout.php";
+       });
+       
+       confirmNo.addEventListener("click", function() {
+         // Code to cancel the deletion goes here
+         customDialog.style.display = "none";
+         body.classList.remove("enableBlur");
+       });
+       
+       customDialog.style.display = "block";
+    })
+   
     
                 
     startAuto();

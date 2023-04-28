@@ -1,12 +1,20 @@
 * {
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-  background-color: #7c009b;
+  background-color: #890ca5;
 	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
     
+  }
+
+  .enableBlur>* {
+    filter: blur(10px);
+  }
+
+  .disableBlur {
+    filter: blur(0);
   }
 
   @keyframes gradient {
@@ -51,12 +59,14 @@ body {
 
   .Title .personalInfos label {
     display: inline-block;
+    height: fit-content;
     margin-top: 30px;
     margin-left: 30px;
     color: #ffffff;
     margin-left: 5px;
     vertical-align: top;
   }
+
 
   .MyArea {
     border: 1px solid white;
@@ -78,6 +88,15 @@ body {
     margin-left: 30px;
     padding-bottom: 15px;
     color: rgb(255, 255, 255);
+  }
+
+  .MyArea h4 span a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+
+  .MyArea h4:hover span a {
+    color: #ff28d8;
   }
 
 
@@ -109,6 +128,32 @@ body {
     width: 100%;
     position: relative;
   }
+
+  .Display .headerDisplay .logout {
+    width: 70px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(245, 219, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .Display .headerDisplay .logout:hover {
+    background-color: #b6143c;
+  }
+
+
+  .Display .headerDisplay .logout #log_out{
+    line-height: 10px;
+    text-decoration: none;
+    color: #fa2c5f;
+  }
+ 
   
 
   .Display .headerDisplay .search-area {
@@ -121,7 +166,7 @@ body {
     border: 1px solid #2c0263;
     background-color: #9111db;
     border-radius: 8px;
-    
+    overflow: visible;
   }
 
   .Display .headerDisplay .search-area:hover {
@@ -149,6 +194,8 @@ body {
     border-radius: 0px 8px 8px 0px;
     
   }
+
+ 
 
   .Display .headerDisplay .search-area input::placeholder {
     color: #ffffff;
@@ -244,6 +291,10 @@ body {
     align-items: center;
     opacity: 70%;
   }
+
+  .carousel .list-images img {
+    object-fit: cover;
+  }
   
   .carousel .list-images .songInfos {
     margin-top: 20px;
@@ -290,8 +341,8 @@ body {
 
   .musicplay .imgMusic img {
     position: absolute;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
   }
   .musicplay .imgMusic i {
@@ -327,6 +378,9 @@ body {
      margin: 0;
      padding: 0;
     animation: slide-left 7s linear infinite;
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflowed content */
+    text-overflow: ellipsis; /* Adds ellipsis to indicate overflow */
   }
 
   @keyframes slide-left {
@@ -344,8 +398,23 @@ body {
     color: #fff;
   }
 
-  .musicplay .song-info .fa.fa-heart {
-    color: #fff;
+  .musicplay .song-info .song-action {
+    color: #fcfcfc;
+    position: relative;
+    top: -2px;
+    left: 220px;
+    cursor: pointer;
+
+  }
+
+  
+
+  .musicplay .song-info .song-action.active {
+    color: #ae00ff;
+  }
+
+  .musicplay .song-info .song-action:hover {
+    color: #ae00ff;
   }
 
   .musicplay .song-container .audio-controls {
@@ -383,14 +452,16 @@ body {
   }
 
   .musicplay .song-container .track #time {
-    padding: 0;
+    width: 20px;
+    padding: 1;
     display: inline;
     color: #cb2bfc;
     margin-left: -170px;
   }
 
   .musicplay .song-container .track #total-time {
-    padding: 0;
+    width: 20px;
+    padding: 1;
     display: inline;
     color: #cb2bfc;
   }
@@ -398,7 +469,7 @@ body {
 
   .musicplay .song-container .track #waveform {
     width: 100%;
-    margin-left: 20px;
+    margin-left: 40px;
   }
 
   .musicplay .song-container .volume-controls {
@@ -459,6 +530,66 @@ body {
   background-color: #390047;
   cursor: grabbing;
   position: relative;
+}
+
+.musicplay .song-container .download-controls {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 60px;
+  left: 1180px;
+}
+
+.musicplay .song-container .download-controls .fa-download {
+  color: #fff;
+  cursor: pointer;
+}
+
+.musicplay .song-container .download-controls .fa-download:hover {
+  color: #830094;
+}
+
+.musicplay .song-container .download-controls .fa-download #downloadBtn {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0.1;
+  width: 20px;
+  height: 20px;
+  left: 1px;
+  right: 5px;
+}
+
+#custom-dialog {
+  color: #fff;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(65, 5, 60);
+  border: 1px solid black;
+  padding: 20px;
+  text-align: center;
+  z-index: 9999;
+  border-radius: 8px;
+}
+
+#custom-dialog h2 {
+  margin-top: 0;
+}
+
+#custom-dialog button {
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+#custom-dialog button:hover {
+  background-color: rgb(147, 0, 177);
+  color: white;
 }
 
 

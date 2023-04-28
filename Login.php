@@ -1,6 +1,6 @@
 <?php
 
-require_once('database/account_db.php');
+require_once('php/music_db.php');
 
 session_start();
 if (isset($_SESSION['username'])) {
@@ -84,6 +84,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         <button type="submit" value="Login" name="sign-in-button" id="sign-in">
           Login
         </button>
+        <p style="position: absolute; top: 435px; font-size: 15px; text-align: center; left: 120px;">Don't have an account ? |<a href="" style="text-decoration: none; color:darkorchid"> Register</a></p>
+
         <!-- <button
             type="submit"
             value="Sign-up"
