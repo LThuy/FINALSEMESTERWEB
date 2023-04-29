@@ -23,11 +23,24 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $error = 'Please enter your password';
   } else if (strlen($pass) < 6) {
     $error = 'Password must have at least 6 characters';
-  } else if (login($user, $pass)) {
-    header('Location: Homepage.php');
-    exit();
   } else {
-    $error = 'Invalid username or password';
+
+    $data = login($user, $pass);
+    if ($data['code'] == 3) {
+      $error = $data['error'];
+    } else if ($data['code'] == 1) {
+      $error = $data['error'];
+    } else if ($data['code'] == 2) {
+      $error = $data['error'];
+    } else {
+      if ($data['code'] == 0) {
+        $_SESSION['username'] = $user;
+        $_SESSION['name'] = $data['data']['firstname'] . ' ' . $data['data']['lastname'];
+
+        header('Location: Homepage.php');
+        exit();
+      }
+    }
   }
 }
 ?>
@@ -47,21 +60,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 <body>
   <div class="container">
     <div class="right-title">
-      <img src="images/logo2.png" alt="logo" id="img" />
+      <img src="images/Color logo - no background.png" alt="logo" id="img" />
       <div class="name">
-        <h1>HCT AU</h1>
+        <h1>Enjoy</h1>
         <p>Best choice for music</p>
       </div>
     </div>
-
-    <!-- <div class="IntroMusic">
-        <audio controls>
-          <source
-            src="IntroMusic/Am-Tham-Ben-Em-Son-Tung-M-TP.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div> -->
     <div class="login-form">
       <form action="" method="post">
         <div class="form-group">
@@ -80,11 +84,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
           echo "<div id='error'>$error</div>";
         }
         ?>
-        <span><a href="" class="forgot-pw">Forgot your password?</a></span>
+        <span><a href="forgot.php" class="forgot-pw" style="text-decoration: none;">Forgot your password?</a></span>
         <button type="submit" value="Login" name="sign-in-button" id="sign-in">
           Login
         </button>
-        <p style="position: absolute; top: 435px; font-size: 15px; text-align: center; left: 120px;">Don't have an account ? |<a href="" style="text-decoration: none; color:darkorchid"> Register</a></p>
+        <p style="position: absolute; top: 435px; font-size: 15px; text-align: center; left: 120px;">Don't have an account ? <a href="register.php" style="text-decoration: none; color:darkorchid"> Register</a></p>
 
         <!-- <button
             type="submit"
