@@ -1,5 +1,5 @@
 <?php
-require_once("../php/music_db.php");
+require_once("../music_db.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['user']) && isset($_POST['namesong']) && isset($_POST['author']) && isset($_POST['link']) && isset($_POST['image'])) {

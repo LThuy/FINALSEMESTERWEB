@@ -1,8 +1,9 @@
 <?php
 
-require_once("php/music_db.php");
+require_once("music_db.php");
 
-$musics = get_musics();
+$musics = get_popular_musics();
+$popular_artists = get_popular_artists();
 
 ?>
 
@@ -39,7 +40,7 @@ $musics = get_musics();
             <h5 class="song-group">
               <?= $m['name'] ?>
               <br />
-              <div class="subtitle"><?= $m['author'] ?></div>
+              <div class="subtitle"><?= $m['artist'] ?></div>
             </h5>
           </li>
         <?php }
@@ -56,36 +57,13 @@ $musics = get_musics();
         </div>
       </div>
       <div class="item">
-        <li>
-          <img src="artists/SonTungMTP.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/MyTam.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/The_Weeknd.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/Dong-nhi.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/Blake_Shelton.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/PhanManhQuynh.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/the-killers.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/LadyGaga.jpg" alt="" />
-        </li>
-        <li>
-          <img src="artists/Trịnh_Công_Sơn.jpeg" alt="" />
-        </li>
-        <li>
-          <img src="artists/Ed-sheeran.jpg" alt="" />
-        </li>
+        <?php foreach ($popular_artists as $p) { ?>
+          <li class="artistItem">
+            <img src="<?= $p['image'] ?>" alt="" />
+            <label for=""><?= $p['name'] ?></label>
+          </li>
+        <?php } ?>
+
       </div>
     </div>
   </div>

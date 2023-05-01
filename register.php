@@ -1,6 +1,6 @@
 <?php
 
-require_once('php/music_db.php');
+require_once('music_db.php');
 
 $error = '';
 $first_name = '';

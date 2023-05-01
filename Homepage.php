@@ -1,10 +1,12 @@
 <?php
-require_once('php/music_db.php');
+require_once('music_db.php');
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: Login.php');
   exit();
 }
+
+$images = get_musics();
 $username = $_SESSION['username']
 ?>
 
@@ -86,11 +88,10 @@ $username = $_SESSION['username']
       <div class="carousel">
         <main>
           <div class="list-images">
-            <img src="poster/1.jpg" alt="" />
-            <img src="poster/2.jpg" alt="" style="display: none" />
-            <img src="poster/3.jpg" alt="" style="display: none" />
-            <img src="poster/4.jpg" alt="" style="display: none" />
-            <img src="poster/5.jpg" alt="" style="display: none" />
+            <img src="poster/2.jpg" alt="" />
+            <?php foreach ($images as $m) { ?>
+              <img src="<?= $m['image'] ?>" alt="" style="display: none" />
+            <?php } ?>
             <div class="btn">
               <button class="prev">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -116,8 +117,9 @@ $username = $_SESSION['username']
           <div class="song-author">
             <label for="song-author" class="name_author"></label>
           </div>
-          <i class="fa fa-heart song-action" aria-hidden="true"></i>
+
         </div>
+        <i class="fa fa-heart song-action" aria-hidden="true"></i>
         <div class="audio-controls" style="color: #fff">
           <span><i class="fa fa-step-backward" aria-hidden="true"></i></span>
           <span><i class="fa fa-backward" aria-hidden="true"></i></span>

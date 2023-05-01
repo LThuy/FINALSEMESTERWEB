@@ -78,25 +78,9 @@
 
   .container4 .category:hover .category-img img {
     scale: 1.25;
-    transform: translateY(-10%);
-    transition: 0.5s linear;
+    transform: translateY(-5%);
+    transition: 0.2s linear;
   }
   
-  .container4 .category:nth-child(odd) .category-img {
-    background-image: url('pop.jpg');
-  }
-  
-  .container4 .category:nth-child(even) .category-img {
-    background-image: url('rap-hiphop.jpg');
-  }
-  
-  .container4 .category:nth-child(3) .category-img {
-    background-image: url('rock.jpg');
-  }
-  
-  .category:nth-child(4) .category-img {
-    background-image: url('electronic-dance.jpg');
-  }
-  
-  /* Add more styles for additional categories */
+
   

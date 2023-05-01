@@ -1,6 +1,6 @@
 <?php
 
-require_once('php/music_db.php');
+require_once('music_db.php');
 
 session_start();
 if (isset($_SESSION['username'])) {

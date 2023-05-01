@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once('php/music_db.php');
+require_once('music_db.php');
 ?>
 
 <head>

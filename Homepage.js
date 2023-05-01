@@ -260,6 +260,7 @@ slider.addEventListener('input', function () {
 var name_song;
 var author;
 var image;
+
     $('.m_musics').click(function(event) {    
        
       event.preventDefault();
@@ -296,8 +297,10 @@ var image;
         }
 
        var play;
-        $(".songItem").click(function(event) {     
-            const id = $(event.currentTarget).attr("data-id");              
+        $(".songItem").click(function(event) {    
+          
+            const id = $(event.currentTarget).attr("data-id");  
+                    
                 wavesurfer.load(id);
                 setTimeout(function() {      
                   $("#playBtn3").removeClass();
@@ -332,11 +335,37 @@ var image;
                     'background-color': '',
                     'border-radius': ''
                 });
+
                 // Add 'active' class to the clicked song
-                $(event.currentTarget).addClass('active');        
+                $(event.currentTarget).addClass('active');   
+
+                var heartIcon = document.getElementsByClassName("song-action")[0];
+                var username = document.getElementById("username");  
+                var songname = document.getElementsByClassName("name_song")[0];                       
+            
+                $.ajax({
+                  url: "apis/checkExistedFavSong.php",
+                  type: "POST",
+                  data: {
+                    username: username.innerText,
+                    namesong: songname.innerText
+                  },
+                  success: function(response) {                
+                    if(response == "true") {
+                      console.log("done");
+                      heartIcon.classList.add("active");
+                    } else {
+                      console.log("fail");
+                      heartIcon.classList.remove("active");
+                    }
+                  },
+                  error: function(xhr, status, error) {
+                    console.error(status + ': ' + error);
+                  }
+                });              
                 }, 1000);
 
-              
+               
                  
               
          });
@@ -353,14 +382,40 @@ var image;
               $(play).addClass("fa-pause-circle-o"); 
             },1100);                     
            })
-        
 
-
-        }
-      });
-
-
-        
+           $('.artistItem').click(function(event) { 
+            event.preventDefault();
+            var url = "artist.php";
+            var artist = $(this).find("label").text();      
+            var image_song = $(this).find("img").attr("src");
+            $.ajax({
+              url: url,
+              type: "POST",
+              data: {
+                artist: artist,
+                image: image_song
+              },
+              success: function(data) {
+                $('main').html(data);
+                $(".song").click(function(event) {
+                  const id = $(event.currentTarget).attr("data-id");                   
+                  wavesurfer.load(id);
+                  var img = $('.imgMusic').find('img');
+                  var namesong = $('.song-info').find('.name_song');
+                  var author_song =  $('.song-info').find('.name_author');
+                  name_song = $(event.currentTarget).find("h3").text();
+                  author = $(event.currentTarget).find("p").text();
+                  namesong.text($(event.currentTarget).find("h3").text());
+                  author_song.text($(event.currentTarget).find("p").text());
+                  image = $(event.currentTarget).find('img').attr('src');
+                  console.log(image);
+                  img.attr('src', $(event.currentTarget).find('img').attr('src')); 
+                })
+              }
+            });
+          });     
+        } 
+      });       
     });        
 
     $('.m_favorites').click(function(event) {
@@ -456,6 +511,37 @@ var image;
         url: url,
         success: function(data) {
           $('main').html(data);
+          $('.category').click(function(event) { 
+            event.preventDefault();
+            console.log("OK");
+            var category = $(this).find("h2").text();
+            var image_category = $(this).find("img").attr("src");
+            $.ajax({
+              url: "category-detail.php",
+              type: "POST",
+              data: {
+                name_category:  category,
+                image: image_category
+              },
+              success: function(data) {
+                $('main').html(data);
+                $(".song").click(function(event) {
+                  const id = $(event.currentTarget).attr("data-id");                   
+                  wavesurfer.load(id);
+                  var img = $('.imgMusic').find('img');
+                  var namesong = $('.song-info').find('.name_song');
+                  var author_song =  $('.song-info').find('.name_author');
+                  name_song = $(event.currentTarget).find("h3").text();
+                  author = $(event.currentTarget).find("p").text();
+                  namesong.text($(event.currentTarget).find("h3").text());
+                  author_song.text($(event.currentTarget).find("p").text());
+                  image = $(event.currentTarget).find('img').attr('src');
+                  console.log(image);
+                  img.attr('src', $(event.currentTarget).find('img').attr('src')); 
+                })         
+              }
+            });
+          });
         }
       });
     });
@@ -495,7 +581,8 @@ var image;
        
        customDialog.style.display = "block";
     })
-   
+
+    
     
                 
     startAuto();

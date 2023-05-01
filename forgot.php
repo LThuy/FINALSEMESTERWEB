@@ -4,7 +4,7 @@ $email = '';
 $success = "";
 session_start();
 
-require_once('php/music_db.php');
+require_once('music_db.php');
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
 
@@ -65,9 +65,7 @@ if (isset($_POST['email'])) {
                             <label for="email" class="text-white">Email</label>
                             <input name="email" id="email" type="text" class="form-control" placeholder="Email address">
                         </div>
-                        <div class="form-group">
-                            <p>If your email exists in the database, you will receive an email containing the reset password instructions.</p>
-                        </div>
+
                         <div class="form-group">
                             <?php
                             if (!empty($error)) {

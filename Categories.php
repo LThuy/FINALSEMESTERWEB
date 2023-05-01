@@ -1,3 +1,12 @@
+<?php
+
+require_once("music_db.php");
+
+$categories = get_categories();
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -13,46 +22,17 @@
             <h1>Categories</h1>
         </div>
         <div class="container4">
-            <div class="category">
-                <h2>Pop</h2>
-                <div class="category-img">
-                    <img src="poster/1.jpg">
+            <?php foreach ($categories as $c) { ?>
+                <div class="category">
+                    <h2><?= $c['name'] ?></h2>
+                    <div class="category-img">
+                        <img src="<?= $c['image'] ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="category">
-                <h2>Rap/Hip-Hop</h2>
-                <div class="category-img">
-                    <img src="rap-hiphop.jpg">
-                </div>
-            </div>
-            <div class="category">
-                <h2>Rock</h2>
-                <div class="category-img">
-                    <img src="rock.jpg">
-                </div>
-            </div>
-            <div class="category">
-                <h2>Electronic/Dance</h2>
-                <div class="category-img">
-                    <img src="electronic-dance.jpg">
-                </div>
-            </div>
-            <div class="category">
-                <h2>Country</h2>
-                <div class="category-img">
-                    <img src="electronic-dance.jpg">
-                </div>
-            </div>
-            <div class="category">
-                <h2>Jazz</h2>
-                <div class="category-img">
-                    <img src="electronic-dance.jpg">
-                </div>
-            </div>
+            <?php } ?>
             <!-- Add more categories here -->
         </div>
     </div>
-
 </body>
 
 </html>
