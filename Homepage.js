@@ -98,11 +98,11 @@ wavesurfer.on('ready', function() {
     }
     
     buttonbackward.onclick = function() {
-      wavesurfer.setPlaybackRate(wavesurfer.getPlaybackRate() - 0.5);
+      wavesurfer.setPlaybackRate(wavesurfer.getPlaybackRate() - 0.25);
     }
     
     buttonforward.onclick = function() {
-      wavesurfer.setPlaybackRate(wavesurfer.getPlaybackRate() + 0.5);
+      wavesurfer.setPlaybackRate(wavesurfer.getPlaybackRate() + 0.25);
     }
     
     wavesurfer.on("play", function() {
@@ -492,6 +492,7 @@ var image;
       }    
     });
 
+    //Load chart
     $('.m_charts').click(function(event) { 
       event.preventDefault();
       var url = $(this).attr('href');
@@ -499,6 +500,20 @@ var image;
         url: url,
         success: function(data) {
           $('main').html(data);
+          $(".song").click(function(event) {
+            const id = $(event.currentTarget).attr("data-id");                   
+            wavesurfer.load(id);
+            var img = $('.imgMusic').find('img');
+            var namesong = $('.song-info').find('.name_song');
+            var author_song =  $('.song-info').find('.name_author');
+            name_song = $(event.currentTarget).find("h3").text();
+            author = $(event.currentTarget).find("p").text();
+            namesong.text($(event.currentTarget).find("h3").text());
+            author_song.text($(event.currentTarget).find("p").text());
+            image = $(event.currentTarget).find('img').attr('src');
+            console.log(image);
+            img.attr('src', $(event.currentTarget).find('img').attr('src')); 
+          })
         }
       });
     });
@@ -582,6 +597,53 @@ var image;
        customDialog.style.display = "block";
     })
 
+
+
+    //search
+
+    var typingTimer;
+    var doneTypingInterval = 500; // 500ms delay before sending AJAX request
+    $("#search-songs").keyup(function() {
+      clearTimeout(typingTimer);
+      var query = $(this).val();
+      if(query != "") {
+        typingTimer = setTimeout(function() {
+          $.ajax({
+            url: "apis/search_songs.php",
+            type: "POST",
+            data: {
+              query: query
+            },
+            success: function(data) {
+              $(".search-box").fadeIn();
+              $(".search-box").html(data);
+              $(".search-card").click(function(event) {
+                event.preventDefault();
+                const id = $(event.currentTarget).attr("data-id");                   
+                wavesurfer.load(id);
+                var img = $('.imgMusic').find('img');
+                  var namesong = $('.song-info').find('.name_song');
+                  var author_song =  $('.song-info').find('.name_author');
+                  var songTitle = $(event.currentTarget).find(".content");
+                  var songTitleText = songTitle.contents().filter(function() {
+                    return this.nodeType === 3; // Select only text nodes
+                  }).text().trim();
+                  name_song = songTitleText;
+                  author = $(event.currentTarget).find(".subtitle").text();
+                  namesong.text(songTitleText);
+                  author_song.text($(event.currentTarget).find(".subtitle").text());
+                  image = $(event.currentTarget).find('img').attr('src');
+                  img.attr('src', $(event.currentTarget).find('img').attr('src')); 
+              })
+            }
+  
+          })
+        }, doneTypingInterval);     
+      } else {
+        $(".search-box").html("");
+        $(".search-box").css.display = "none";
+      }
+    })
     
     
                 

@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #890ca5;
+  background-image: url("images/0AE0yxG2MtmmMns7VwcpiDlpkDi1ncTyDGtGBBaHd_s.gif");
 	background-size: 400% 400%;
     
   }
@@ -39,7 +39,7 @@ body {
     background-color: #000;
     width: 300px;
     height: 500px;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(152, 0, 190);
     border-radius: 8px 0 0 0 ;
   }
 
@@ -52,7 +52,7 @@ body {
   .Title .personalInfos img {
     margin-top: 30px;
     margin-left: 30px;
-    border: 1px solid #ffffff;
+    border: 1px solid #9600a7;
     width: 50px;
     height: 50px;
   }
@@ -69,7 +69,7 @@ body {
 
 
   .MyArea {
-    border: 1px solid white;
+    border: 1px solid rgb(152, 0, 190);
     height: 395px;
     background-color: #270530;
     opacity: 90%;
@@ -120,7 +120,7 @@ body {
     flex-grow: 1;
     height: 500px;
     background-color: #000;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(152, 0, 190);
     border-radius: 0 8px 0 0 ;
   }
 
@@ -135,7 +135,7 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: rgb(245, 219, 255);
+    background-color: rgb(99, 23, 129);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,14 +144,14 @@ body {
   }
 
   .Display .headerDisplay .logout:hover {
-    background-color: #b6143c;
+    background-color: #9c1033;
   }
 
 
   .Display .headerDisplay .logout #log_out{
     line-height: 10px;
     text-decoration: none;
-    color: #fa2c5f;
+    color: #ca1e49;
   }
  
   
@@ -166,7 +166,6 @@ body {
     border: 1px solid #2c0263;
     background-color: #9111db;
     border-radius: 8px;
-    overflow: visible;
   }
 
   .Display .headerDisplay .search-area:hover {
@@ -203,6 +202,72 @@ body {
 
   .Display .headerDisplay .search-area input:focus {
     outline: none;
+  }
+
+  .Display .headerDisplay .search-area .search-box::-webkit-scrollbar{
+    display: none;
+  }
+
+  .Display .headerDisplay .search-area .search-box{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    margin-top: 10px;
+    z-index: 9999;
+    border-radius: 10px;
+    background-color: #3f004e;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow: auto;
+    display: none;
+  }
+
+  .Display .headerDisplay .search-area .search-box .search-card{
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+    text-decoration: none;
+    background-color: #4e0061;
+    margin-bottom: 3px;
+    border-radius: 8px;
+  }
+
+  .Display .headerDisplay .search-area .search-box .search-card:hover {
+    background-color: #380146;
+  }
+
+  .Display .headerDisplay .search-area .search-box .search-card .content{
+    width: 80%;
+    height: 100%;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+  
+  }
+
+  .Display .headerDisplay .search-area .search-box .search-card .content .subtitle{
+    font-size: 11;
+   color: rgb(179, 179, 179);
+   font-weight: 500;
+   margin-top: 2px;
+  
+  }
+
+  .Display .headerDisplay .search-area .search-box .search-card img{
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 5px;
   }
 
   .carousel {
@@ -316,7 +381,7 @@ body {
     width: 100%;
     height: 105px;
     background-color: #000;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(152, 0, 190);
     border-radius: 0 0 8px 8px ;
   }
 
@@ -373,7 +438,7 @@ body {
   }
 
   .musicplay .song-info .song-title h4{
-    font-size: 14px;
+    font-size: 15px;
      margin: 0;
      padding: 0;
     animation: slide-left 7s linear infinite;
@@ -392,7 +457,7 @@ body {
   }
 
   .musicplay .song-info .song-author {
-    font-size: 13px;
+    font-size: 11px;
     margin-top: 10px;
     color: #fff;
   }

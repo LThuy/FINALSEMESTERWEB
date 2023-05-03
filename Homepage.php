@@ -36,7 +36,7 @@ $username = $_SESSION['username']
   <div class="container">
     <div class="Title">
       <div class="personalInfos">
-        <img src="images/logo.png" alt="" />
+        <img src="images/tumblr_26da814dc89978c06c07631cd8e436ca_45328dd1_500.gif" alt="" />
         <label for="" id="username"><?= $username ?></label>
       </div>
       <div class="MyArea">
@@ -79,7 +79,10 @@ $username = $_SESSION['username']
       <div class="headerDisplay">
         <div class="search-area">
           <span><i class="fa fa-search" aria-hidden="true"></i></span>
-          <input type="text" placeholder="Search songs, artists,..." />
+          <input type="text" placeholder="Search songs, artists,..." id="search-songs" />
+          <div class="search-box">
+
+          </div>
         </div>
         <div class="logout">
           <a href="Logout.php" id="log_out">Log out</a>

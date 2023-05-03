@@ -23,12 +23,9 @@ $chart = get_chart_musics();
         <?php
         $songPosition = 1;
         foreach ($chart as $c) { ?>
-            <div class="song">
+            <div class="song" data-id="<?= $c['link'] ?>">
                 <div class="song-img">
                     <img src="<?= $c['image'] ?>">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
                 </div>
                 <div class="song-info">
                     <span class="song-position"><?= $songPosition ?></span>
