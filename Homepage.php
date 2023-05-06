@@ -124,11 +124,11 @@ $username = $_SESSION['username']
         </div>
         <i class="fa fa-heart song-action" aria-hidden="true"></i>
         <div class="audio-controls" style="color: #fff">
-          <span><i class="fa fa-step-backward" aria-hidden="true"></i></span>
+          <span><i class="fa fa-step-backward" aria-hidden="true" id="previous-song"></i></span>
           <span><i class="fa fa-backward" aria-hidden="true"></i></span>
           <i class="fa fa-play-circle" aria-hidden="true" id="playBtn2"></i>
           <span><i class="fa fa-forward" aria-hidden="true"></i></span>
-          <span><i class="fa fa-step-forward" aria-hidden="true"></i></span>
+          <span><i class="fa fa-step-forward" aria-hidden="true" id="next-song"></i></span>
         </div>
         <div class="track">
           <div id="time"></div>

@@ -352,10 +352,8 @@ var image;
                   },
                   success: function(response) {                
                     if(response == "true") {
-                      console.log("done");
                       heartIcon.classList.add("active");
                     } else {
-                      console.log("fail");
                       heartIcon.classList.remove("active");
                     }
                   },
@@ -644,6 +642,55 @@ var image;
         $(".search-box").css.display = "none";
       }
     })
+
+
+    //Get next song
+    $("#next-song").click(function (e) {
+      var img = $('.imgMusic').find('img');
+      var namesong = $('.song-info').find('.name_song');
+      console.log(namesong.text());
+      var author_song =  $('.song-info').find('.name_author');
+        $.ajax({
+          url: "apis/getNextSong.php",
+          type: "POST",
+          data: {
+            current_song: namesong.text()
+          },
+          success: function(data) {
+            console.log(data);
+            var songData = JSON.parse(data);
+            wavesurfer.load(songData["link"]);
+            img.attr('src', songData["image"]); 
+            namesong.text(songData["name"]);
+            author_song.text(songData["artist"]);
+          }
+        })
+
+      })
+
+       //Get previous song
+    $("#previous-song").click(function (e) {
+      var img = $('.imgMusic').find('img');
+      var namesong = $('.song-info').find('.name_song');
+      console.log(namesong.text());
+      var author_song =  $('.song-info').find('.name_author');
+        $.ajax({
+          url: "apis/getPreviousSong.php",
+          type: "POST",
+          data: {
+            current_song: namesong.text()
+          },
+          success: function(data) {
+            console.log(data);
+            var songData = JSON.parse(data);
+            wavesurfer.load(songData["link"]);
+            img.attr('src', songData["image"]); 
+            namesong.text(songData["name"]);
+            author_song.text(songData["artist"]);
+          }
+        })
+
+      })
     
     
                 
