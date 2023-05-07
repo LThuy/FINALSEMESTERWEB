@@ -39,7 +39,7 @@ if (
     $error = 'Password does not match';
   } else {
     // register a new account
-    require_once 'php/music_db.php';
+    require_once 'music_db.php';
     if (check_Emails($email)) {
       $error = 'Email was registered. Please enter another email.';
     } else {

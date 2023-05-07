@@ -126,7 +126,7 @@ function sendResetPassword($email)
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Email Reset Password';
-        $mail->Body    = "Click <a href='http://localhost:8088/WeB%20CU%E1%BB%90I%20K%E1%BB%B2/reset_password.php?email=$email'>here</a> to reset your password";
+        $mail->Body    = "Click <a href='http://localhost:8088/reset_password.php?email=$email'>here</a> to reset your password";
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
@@ -189,7 +189,7 @@ function sendActivationEmail($email, $token)
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Email Activation';
-        $mail->Body    = "Click <a href='http://localhost:8088/WeB%20CU%E1%BB%90I%20K%E1%BB%B2/activate.php?email=$email&token=$token'>here</a> to activate your email";
+        $mail->Body    = "Click <a href='http://localhost:8088/activate.php?email=$email&token=$token'>here</a> to activate your email";
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
@@ -405,5 +405,3 @@ function get_song_category($category)
     }
     return $data;
 }
-
-
